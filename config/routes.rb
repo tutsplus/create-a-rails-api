@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
-  resources :tables, except: [:new, :edit]
+  resources :orders, only: [ :index ] #/orders
+
+  resources :tables, except: [:new, :edit] do
+    resources :orders, only: [ :create ] #/tables/:id/orders
+  end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
