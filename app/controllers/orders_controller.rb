@@ -20,6 +20,18 @@ class OrdersController < ApplicationController
     end
   end
 
+  def add
+    @order = Order.find params[:id]
+    order_item = OrderItem.where(order_id: @order.id, item_id: params[:item_id]).first.increment(:quantity) rescue
+      @order.order_items.build(item_id: params[:item_id])
+
+    if order_item.save
+      render json: order_item, status: :created
+    else
+      render json: order_item.errors, status: :unprocessable_entity
+    end
+  end
+
   private
 
     def order_params

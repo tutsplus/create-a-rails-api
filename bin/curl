@@ -12,4 +12,11 @@ create_order() {
       http://localhost:3000/tables/1/orders
 }
 
+add_item() {
+  curl -v -X POST \
+      -H "Content-Type: application/json" \
+      -d @bin/add_item.json \
+      http://localhost:3000/tables/1/orders/1/add
+}
+
 $1
