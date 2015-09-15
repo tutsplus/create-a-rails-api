@@ -26,4 +26,8 @@ pay_order() {
       http://localhost:3000/tables/1/orders/1/pay
 }
 
+stats() {
+  curl http://localhost:3000/stats
+}
+
 $1
