@@ -11,12 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150915102934) do
+ActiveRecord::Schema.define(version: 20150915132809) do
 
   create_table "items", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+    t.integer  "price",      default: 2
   end
 
   create_table "order_items", force: :cascade do |t|
@@ -39,6 +40,15 @@ ActiveRecord::Schema.define(version: 20150915102934) do
   end
 
   add_index "orders", ["table_id"], name: "index_orders_on_table_id"
+
+  create_table "receipts", force: :cascade do |t|
+    t.integer  "order_id"
+    t.string   "payment_method"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "receipts", ["order_id"], name: "index_receipts_on_order_id"
 
   create_table "tables", force: :cascade do |t|
     t.integer  "number"

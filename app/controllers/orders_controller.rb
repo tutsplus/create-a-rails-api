@@ -32,6 +32,20 @@ class OrdersController < ApplicationController
     end
   end
 
+  def pay
+    @order = Order.find(params[:id])
+    if @order.total_amount == params[:amount]
+      @receipt = Receipt.new(order: @order, payment_method: params[:payment_method])
+
+      if @receipt.save
+        render json: @receipt, status: 201 # No Content
+      else
+        render json: @receipt.errors, status: 422 # No Content
+      end
+    else
+      render json: { "message": "You didn't pay for the exact amount: #{@order.total_amount}." }, status: 422
+    end
+  end
   private
 
     def order_params
