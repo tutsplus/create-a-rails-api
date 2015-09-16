@@ -1,3 +1,12 @@
+GIT
+  remote: git://github.com/rails-api/active_model_serializers.git
+  revision: 610775a95fb4a9348990ace19f621a7921ae20c3
+  specs:
+    active_model_serializers (0.10.0.rc2)
+      actionpack (>= 4.0)
+      activemodel (>= 4.0)
+      railties (>= 4.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -113,6 +122,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_model_serializers!
   hirb
   kaminari
   minitest-utils
