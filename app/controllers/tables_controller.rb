@@ -4,7 +4,9 @@ class TablesController < ApplicationController
   # GET /tables
   # GET /tables.json
   def index
-    @tables = Table.all
+    page = params[:page] || 1
+    per_page = 10
+    @tables = Table.page(page).per(per_page).all
 
     render json: @tables
   end
